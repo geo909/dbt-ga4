@@ -33,4 +33,9 @@ renamed as (
 )
 
 select * from renamed
-qualify row_number() over(partition by event_date_dt, stream_id, user_pseudo_id, session_id, event_name, event_timestamp, to_json_string(ARRAY(SELECT params FROM UNNEST(event_params) AS params ORDER BY key))) = 1
+-- The deduplication below does not take in account the contents of the items, so it deduplicates events that we consider different.
+-- Therefore we cancel the deduplication for now, by setting the qualify clause to always true (we cannot remove a qualify clause completely).
+-- The correct way would be to have event ids in the parameters, but this is something we cannot change right now.
+-- We have decided that we may revisit this decision in the future as we understand our events better.
+--qualify row_number() over(partition by event_date_dt, stream_id, user_pseudo_id, session_id, event_name, event_timestamp, to_json_string(ARRAY(SELECT params FROM UNNEST(event_params) AS params ORDER BY key))) = 1
+qualify count(*) over () >= 1
