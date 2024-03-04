@@ -333,3 +333,4 @@ models:
 # dbt Style Guide
 
 This package attempts to adhere to the Brooklyn Data style guide found [here](https://github.com/brooklyn-data/co/blob/main/sql_style_guide.md). This work is in-progress. 
+
