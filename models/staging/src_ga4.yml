@@ -14,3 +14,7 @@ sources:
       - name: events
         identifier: events_* # Scan across all sharded event tables. Use the 'start_date' variable to limit this scan
         description: Main events table exported by GA4. Sharded by date. 
+      
+      - name: pseudonymous_users
+        identifier: pseudonymous_users_* # Scan across all sharded pseudonymous_users tables. Use the 'start_date' variable to limit this scan
+        description: Main pseudonymous_users table exported by GA4. Sharded by date.
