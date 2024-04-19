@@ -1,0 +1,5 @@
+version: 2
+
+models:  
+  - name: stg_ga4__pseudonymous_users
+    description: Staging events model that, for the time being, mirrors the base model.
