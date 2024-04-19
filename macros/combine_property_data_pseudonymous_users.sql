@@ -26,8 +26,8 @@
                 {%- set relation_suffix = relation.identifier|replace('pseudonymous_users_', '') -%}
                 
                 {%- if relation_suffix|int >= earliest_shard_to_retrieve|int -%}
-                    {{ log("Cloning " ~ "pseudonymous_users_" ~ relation_suffix ~ "from property" ~ property_id ~ " into " ~ var('combined_dataset'), info=True) }}
                     create or replace table `{{target.project}}.{{var('combined_dataset')}}.pseudonymous_users_{{relation_suffix}}{{property_id}}` clone `{{var('source_project')}}.analytics_{{property_id}}.pseudonymous_users_{{relation_suffix}}`;
+                    {{ log("Cloned pseudonymous_users_" ~ relation_suffix ~ " from property " ~ property_id ~ " into " ~ var('combined_dataset'), info=True) }}
                 {% endif %}
 
             {% endfor %}
