@@ -5,7 +5,11 @@
     {% endfor %}
 {% endif %}
 
-
+{{
+  config(
+      enabled = false,
+  )
+}}
 with purch as (
     select
         *
